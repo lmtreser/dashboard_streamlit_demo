@@ -1,8 +1,6 @@
-# Panel Domotico Virtual con Streamlit
-# 
-# Documentación disponible en:
-# https://docs.streamlit.io/develop/quick-reference/cheat-sheet
-# https://docs.streamlit.io/develop/api-reference
+# Panel Virtual con Streamlit - Datos aplicados a la domótica 
+# ToDo: refactorizar el código para mejorar la legibilidad y mantenibilidad.
+# Lucas Martín Treser - 2024
 #
 
 import streamlit as st
@@ -50,13 +48,12 @@ fig1 = go.Figure(
                 },
                 number={
                         'valueformat': ".1f",
-                        'suffix': " %"
-                    }
+                        'suffix': " %",
+                        }
             )
         ],
     layout={
-        "width":400, 
-        "height":300
+        "height":350
         }
 )
 
@@ -83,8 +80,7 @@ fig2 = go.Figure(
                     )
                 ],
     layout={
-        "width":400, 
-        "height":300
+        "height":350
         }
 )
 
@@ -139,9 +135,10 @@ with tab1:
 with tab2:
     
     with st.container(border=True):
-
-        st.write(f"##### Humedad / Temperatura ({timestamp_sample})")
-        col6, col7 = st.columns(2)
+        day = timestamp_sample[8:10]
+        hour = timestamp_sample[11:16]
+        st.write(f"##### Humedad y Temperatura el {day} de noviembre a las {hour} hs")
+        col6, col7 = st.columns(2, gap="small", vertical_alignment="center")
 
         with col6:
             st.plotly_chart(fig1, use_container_width=True)
